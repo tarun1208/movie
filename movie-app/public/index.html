@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #63B8FF, #ABDEFF);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .auth-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 {
+            color: #2C3E50;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 1.8em;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #34495E;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #BDC3C7;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        button {
+            background-color: #3498DB;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #2980B9;
+        }
+
+        p {
+            margin-top: 15px;
+            color: #7F8C8D;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: #3498DB;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container" id="registration-form">
+        <h2>Sign Up for Movie Bot</h2>
+        <label for="telegram-username">Telegram Username:</label>
+        <input type="text" id="telegram-username" required><br><br>
+        <label for="telegram-id">Telegram ID:</label>
+        <input type="text" id="telegram-id" required><br><br>
+        <button id="signup-button">Sign Up</button>
+        <p>Already registered? <a href="./login.html">Log In</a></p>
+    </div>
+
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+    
+        // Your Firebase config
+        const firebaseConfig = {
+    apiKey: "AIzaSyBNqib7jH0sOCE-y3QQHNXYPBghhje1UDs",  
+    authDomain: "course401-9b713.firebaseapp.com",  
+    projectId: "course401-9b713",  
+    storageBucket: "course401-9b713.appspot.com",  
+    messagingSenderId: "462932597740",  
+    appId: "1:462932597740:web:e7927f352dba77ad9b7ec9"
+};
+
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+    
+        async function register() {
+        const username = document.getElementById("telegram-username").value;
+        const telegramId = document.getElementById("telegram-id").value;
+
+        try {
+            await setDoc(doc(db, "users", telegramId), {
+                username: username,
+                telegramId: telegramId
+            });
+            alert("Registration successful!");
+            window.location.href = "/login.html";
+        } catch (error) {
+            alert("Error: " + error.message);
+        }
+    }
+
+    // Step 2: Attach the event listener
+    document.addEventListener("DOMContentLoaded", () => {
+        const signupButton = document.getElementById("signup-button");
+        if (signupButton) {
+            signupButton.addEventListener("click", register);
+        } else {
+            console.error("Signup button not found!");
+        }
+    });
+    </script>
+    
+</body>
+</html>
