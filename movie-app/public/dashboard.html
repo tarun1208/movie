@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #2c3e50;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #1abc9c;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .dashboard-container {
+            width: 90%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+            justify-items: center;
+        }
+
+        .movie-card {
+            background-color: #34495e;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 280px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .movie-card h3 {
+            margin: 15px 20px;
+            font-size: 1.5em;
+            color: #ecf0f1;
+        }
+
+        .movie-card p {
+            color: #bdc3c7;
+            margin: 0 20px 15px;
+            font-size: 1em;
+        }
+
+        .movie-card button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin: 0 20px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .movie-card button:hover {
+            background-color: #c0392b;
+        }
+
+        .footer {
+            background-color: #1abc9c;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="login.html">Logout</a>
+        <a href="about.html">About</a>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/280x350" alt="Movie Image">
+            <h3>Movie Title 1</h3>
+            <p>A brief description of the movie. It should be interesting to keep users engaged.</p>
+            <button onclick="alert('Movie details coming soon!')">View Details</button>
+        </div>
+
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/280x350" alt="Movie Image">
+            <h3>Movie Title 2</h3>
+            <p>A brief description of the movie. It should be interesting to keep users engaged.</p>
+            <button onclick="alert('Movie details coming soon!')">View Details</button>
+        </div>
+
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/280x350" alt="Movie Image">
+            <h3>Movie Title 3</h3>
+            <p>A brief description of the movie. It should be interesting to keep users engaged.</p>
+            <button onclick="alert('Movie details coming soon!')">View Details</button>
+        </div>
+
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/280x350" alt="Movie Image">
+            <h3>Movie Title 4</h3>
+            <p>A brief description of the movie. It should be interesting to keep users engaged.</p>
+            <button onclick="alert('Movie details coming soon!')">View Details</button>
+        </div>
+
+        <!-- Add more movie cards as needed -->
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Movies App | All Rights Reserved</p>
+    </div>
+
+</body>
+</html>
