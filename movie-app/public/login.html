@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #63B8FF, #ABDEFF); /* Brighter sky gradient */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Hide scrollbar for animation */
+            position: relative; /* For z-index of clouds */
+        }
+
+        .cloud {
+            position: absolute;
+            background-image: url('data:image/png;base64,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');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.8; /* Slightly more opaque */
+            animation: moveCloud 25s linear infinite; /* Slower animation */
+            z-index: 0;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1)); /* Subtle shadow */
+        }
+
+        .cloud1 { top: 15%; left: 5%; width: 180px; height: 70px; animation-delay: 3s; }
+        .cloud2 { top: 30%; right: 10%; width: 220px; height: 85px; animation-delay: 8s; }
+        .cloud3 { bottom: 35%; left: 20%; width: 160px; height: 60px; animation-delay: 13s; }
+        .cloud4 { bottom: 10%; right: 15%; width: 200px; height: 75px; animation-delay: 18s; }
+
+        @keyframes moveCloud {
+            0% { transform: translateX(-300px); }
+            100% { transform: translateX(calc(100vw + 300px)); }
+        }
+
+        .auth-container {
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.95); /* Even less transparent */
+            padding: 40px; /* More padding */
+            border-radius: 15px; /* More rounded corners */
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+            border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
+            width: 350px; /* Set a specific width */
+            max-width: 90%; /* Ensure it doesn't get too wide on large screens */
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .auth-container h2 {
+            color: #2C3E50; /* Darker heading */
+            margin-bottom: 35px;
+            font-weight: bold;
+            font-size: 2.2em; /* Larger heading */
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #34495E; /* Darker label */
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 30px);
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #BDC3C7;
+            border-radius: 8px; /* More rounded input */
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+            font-size: 1em;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #3498DB; /* Focus color */
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Focus shadow */
+        }
+
+        button {
+            background-color: #3498DB;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease-out;
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.4); /* Button shadow */
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #2980B9;
+            transform: scale(1.03);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        p {
+            margin-top: 25px;
+            color: #7F8C8D;
+            font-size: 1em;
+        }
+
+        a {
+            color: #3498DB;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    <div class="cloud cloud4"></div>
+    <div class="auth-container" id="login-form">
+        <h2>Login</h2>
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" required><br><br>
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" required><br><br>
+        <button onclick="login()">Log In</button>
+        <p>Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+    
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBNqib7jH0sOCE-y3QQHNXYPBghhje1UDs",
+            authDomain: "course401-9b713.firebaseapp.com",
+            projectId: "course401-9b713",
+            storageBucket: "course401-9b713.appspot.com",
+            messagingSenderId: "462932597740",
+            appId: "1:462932597740:web:e7927f352dba77ad9b7ec9"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+    
+        // Login function
+        window.login = function () {
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+    
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert("Login successful!");
+                    window.location.href = "dashboard.html"; // Redirect to the dashboard or homepage
+                })
+                .catch((error) => {
+                    alert(error.message); // Show error message if login fails
+                });
+        };
+    </script>
+    
+    
+    
+</body>
+</html>
