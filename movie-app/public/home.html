@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Bot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #87CEEB, #E0F2F7);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .cloud {
+            position: absolute;
+            background-image: url('data:image/png;base64,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');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            animation: moveCloud 20s linear infinite;
+        }
+        .cloud1 { top: 10%; left: 30%; width: 150px; height: 60px; animation-delay: 4s; }
+        .cloud2 { top: 40%; right: 25%; width: 180px; height: 70px; animation-delay: 9s; }
+        .cloud3 { bottom: 25%; left: 15%; width: 160px; height: 65px; animation-delay: 14s; }
+        .cloud4 { bottom: 10%; right: 5%; width: 140px; height: 55px; animation-delay: 18s; }
+        
+        @keyframes moveCloud {
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(calc(100vw + 200px)); }
+        }
+        
+        .container {
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #03a9f4;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        button:hover {
+            background-color: #0288d1;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    <div class="cloud cloud4"></div>
+    
+    <div class="container">
+        <h2>🎬 Movie Bot</h2>
+        <label for="movie-input">Enter Movie Name:</label>
+        <input type="text" id="movie-input" placeholder="e.g. Inception"><br><br>
+        <button onclick="searchMovie()">Search</button>
+        <button onclick="getHistory()">View History</button>
+        <div id="result"></div>
+        <br>
+        <button onclick="logout()">Logout</button>
+    </div>
+    
+    <script>
+        async function searchMovie() {
+            const movie = document.getElementById('movie-input').value;
+            if (!movie) {
+                alert('Please enter a movie name.');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/movie/${movie}`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('result').innerHTML = `
+                        <h3>${data.Title} (${data.Year})</h3>
+                        <p>⭐ IMDb: ${data.imdbRating}</p>
+                        <p>🎭 Genre: ${data.Genre}</p>
+                        <p>🗣 Language: ${data.Language}</p>
+                        <p>👥 Actors: ${data.Actors}</p>
+                        <p><img src="${data.Poster}" width="150" alt="Movie Poster"></p>
+                    `;
+                } else {
+                    document.getElementById('result').innerHTML = '<p>Movie not found. Try another title.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching movie:', error);
+                document.getElementById('result').innerHTML = '<p>An error occurred while searching for the movie.</p>';
+            }
+        }
+        
+        async function getHistory() {
+            try {
+                const response = await fetch('/history');
+                const data = await response.json();
+                
+                if (data.length === 0) {
+                    document.getElementById('result').innerHTML = '<p>No search history found.</p>';
+                } else {
+                    let historyHTML = '<h3>📌 Your Search History:</h3><ul>';
+                    data.forEach(movie => {
+                        historyHTML += `<li>${movie}</li>`;
+                    });
+                    historyHTML += '</ul>';
+                    document.getElementById('result').innerHTML = historyHTML;
+                }
+            } catch (error) {
+                console.error('Error fetching history:', error);
+                document.getElementById('result').innerHTML = '<p>Error fetching search history.</p>';
+            }
+        }
+        
+        function logout() {
+            alert('Logged out.');
+            window.location.href = '/login.html';
+        }
+    </script>
+</body>
+</html>
